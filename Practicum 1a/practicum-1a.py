@@ -14,19 +14,22 @@ print("Pole: ",H.pole())
 print("Zero: ",H.zero())
 
 
-K = 2
 
-Sys1 = K*H
-Sys2 = 1
-Hclosed = control.feedback(Sys1,Sys2) 
+for i in [0.1, 1, 1.5, 10]:
 
-y,t = control.step_response(H)
+    K = i
+    print(i)
+    Sys1 = K*H
+    Sys2 = 1
+    Hclosed = control.feedback(Sys1,Sys2) 
+
+    y,t = control.step_response(H)  
+
+    plt.plot(t,y)
+    plt.ylabel('Stap reponsie')
+    plt.xlabel('Tijd [s]')
+    plt.legend(["a","b","c","d"])
 
 
 
-
-plt.plot(t,y)
-plt.ylabel('Stap reponsie')
-plt.xlabel('Tijd [s]')
-plt.legend('Open lus')
 plt.show()
