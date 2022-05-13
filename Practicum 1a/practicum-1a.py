@@ -9,7 +9,8 @@ teller = np.array([2.0])
 noemer = np.array([1.0, -3.0]) 
 H = control.tf(teller,noemer)
 print(H)
-
+print("Pole: ",H.pole())
+print("Zero: ",H.zero())
 
 for i in [0.1, 1, 1.5, 10]:
 
