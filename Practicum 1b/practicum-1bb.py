@@ -11,8 +11,13 @@ N = np.array([1.0, 5.0])
 H = control.tf(T,N)
 
 print(H)
+
 for w in [0, 1, 5, 10, 100,500]:
     Hw = control.evalfr(H, 1j * w)
-    print("W:",w,"H(jw):",Hw)
-    print("W:",w,"|H(jw)|:",np.abs(Hw))
-    print("W:",w,"args(H(jw)):",np.degrees(np.angle(Hw)))
+    plt.plot(*Hw)
+
+control.nyquist(H)
+r = control.nyquist(H)
+
+
+plt.show()
