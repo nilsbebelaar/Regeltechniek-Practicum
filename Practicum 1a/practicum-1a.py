@@ -10,10 +10,6 @@ noemer = np.array([1.0, -3.0])
 H = control.tf(teller,noemer)
 print(H)
 
-print("Pole: ",H.pole())
-print("Zero: ",H.zero())
-
-
 
 for i in [0.1, 1, 1.5, 10]:
 
@@ -23,13 +19,13 @@ for i in [0.1, 1, 1.5, 10]:
     Sys2 = 1
     Hclosed = control.feedback(Sys1,Sys2) 
 
-    y,t = control.step_response(H)  
+    y,t = control.step_response(Hclosed)  
 
     plt.plot(t,y)
-    plt.ylabel('Stap reponsie')
-    plt.xlabel('Tijd [s]')
-    plt.legend(["a","b","c","d"])
+    
 
-
+plt.ylabel('Stap reponsie')
+plt.xlabel('Tijd [s]')
+plt.legend(["0.1","1","1.5","10"])
 
 plt.show()
