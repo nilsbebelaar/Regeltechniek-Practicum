@@ -14,33 +14,16 @@ K = 100
 Sys1 = K*H
 Sys2 = 1
 
-
-
-Hclosed = control.feedback(Sys1,Sys2) 
+Hclosed = H #control.feedback(Sys1,Sys2) 
 
 print(Hclosed)
 
 print("Pole: ",Hclosed.pole())
 print("Zero: ",Hclosed.zero())
 
-t_closed, y_closed = control.step_response(Hclosed) 
+#t_closed, y_closed = control.step_response(Hclosed) 
+mag, phase, omega = control.bode(Hclosed, omega=np.logspace(-1,1,300))
+print(phase)
 
-
-tijd_totaal = 0
-j = 0
-
-
-for i in range(len(y_closed)):
-    if(y_closed[i] > 0.999):
-        tijd_totaal += t_closed[i]
-       
-    j += 1
-
-T = 1/(tijd_totaal/j)*2*3.14
-print(f'Trillings tijd: {T}')
-
-plt.plot(t_closed, y_closed)
-plt.ylabel('Stap reponsie')
-plt.xlabel('Tijd [s]')
 
 plt.show()
