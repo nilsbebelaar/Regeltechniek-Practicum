@@ -29,5 +29,4 @@ for i, K in enumerate([0.1, 1, 1.5, 10]):
 plt.ylabel('Stap reponsie')
 plt.xlabel('Tijd [s]')
 plt.legend(["0.1", "1", "1.5", "10"])
-
 plt.show()
