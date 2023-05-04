@@ -12,7 +12,7 @@ H = control.tf(T,N)
 
 print(H)
 
-control.nyquist(H)
+#control.nyquist(H)
 r = control.nyquist(H)
 
 x = []
