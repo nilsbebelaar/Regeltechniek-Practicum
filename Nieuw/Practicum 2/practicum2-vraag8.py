@@ -14,7 +14,7 @@ print(H)
 
 t = np.arange(0, 10, 0.01)  # definitie tijdsvector
 u = np.sin(5*t)  # zelf definiëren
-y = control.forced_response(H,t,u)[1]  # u input, t time, ofy = cm.lsim(H, u, t)[0]  # u input, t time # alternatieve notatie
+y = control.forced_response(H,t,u)[1] 
 
 plt.plot(t,u)
 plt.plot(t,y)
