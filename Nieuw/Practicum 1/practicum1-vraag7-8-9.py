@@ -30,6 +30,9 @@ Sys1 = K*H
 Sys2 = 1
 Hclosed = control.feedback(Sys1,Sys2) 
 
+print(Sys1)
+print(Hclosed)
+
 t_open, y_open = control.step_response(Sys1)  
 t_closed, y_closed = control.step_response(Hclosed) 
 
@@ -46,12 +49,11 @@ print(f'Doorschot Open Waard geschat: {round(d2,2)} T: {round(t2,2)} || Waarde B
 print("Static Error Closed",static_error(y_closed,1))
 
 
-#for k in info_openlus:
-#   print(f"{k}: {info_openlus[k]}")
-#
-#for k in info_closed:
-#   print(f"{k}: {info_closed[k]}")
+for k in info_openlus:
+   print(f"{k}: {info_openlus[k]}")
 
+for k in info_closed:
+   print(f"{k}: {info_closed[k]}")
 plt.plot(t_open,y_open, t_closed, y_closed)
 plt.ylabel('Stap reponsie')
 plt.xlabel('Tijd [s]')
