@@ -1,0 +1,4 @@
+numpy
+scikit-build
+slycot==0.4.0
+control
