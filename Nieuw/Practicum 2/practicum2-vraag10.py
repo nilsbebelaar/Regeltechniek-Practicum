@@ -24,6 +24,6 @@ for zeta in zetas:
 
 all_axes = plt.gcf().get_axes()
 plt.sca(all_axes[0])
-plt.scatter(x_punt, y_punt, label="1/(2$\zeta$)")
+plt.scatter(x_punt, y_punt, label=r'$\frac{1}{2\zeta}$')
 plt.legend()
 plt.show()
