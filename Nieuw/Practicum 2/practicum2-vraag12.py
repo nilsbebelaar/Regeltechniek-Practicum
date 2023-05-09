@@ -17,7 +17,7 @@ x_punt = [100, 100, 100, 100, 100, 100]
 y_punt = []
 
 #forced response spullen
-labes = []
+labels = []
 point_list = []
 
 for zeta in zetas:
@@ -34,7 +34,7 @@ for zeta in zetas:
     #forced response
     y = control.forced_response(H,_t,u)[1] 
     point_list.append(y)
-    labes.append(f'Zeta {zeta}')
+    labels.append(f"$\zeta$={zeta}")
 
     #bode plot
     mag, phase, omega = control.bode(H, omega=t, label=f"$\zeta$={zeta}")
@@ -52,8 +52,8 @@ for points in point_list:
     ax.plot(_t,points)
 ax.plot(_t,u)
 #label de punten
-labes.append("sin")
-plt.legend(labes)
+labels.append(r"$\sin{x}$")
+plt.legend(labels)
 
 
 plt.show()
