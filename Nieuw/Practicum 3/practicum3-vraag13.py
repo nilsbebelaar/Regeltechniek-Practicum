@@ -15,17 +15,27 @@ teller = [Kd, Kp]
 noemer = [m, Kd, Kp]
 H_pd = control.tf(teller, noemer)
 
-teller = [Kp]
-noemer = [m,0,Kp]
-H_p = control.tf(teller,noemer)
-print(H_p)
+t = np.linspace(0, 3, 1000)  # definitie tijdsvector
+u5 = np.sin(5*t)  # zelf definiëren
+y5 = control.forced_response(H_pd,t,u5)[1] 
+u10 = np.sin(10*t)  # zelf definiëren
+y10 = control.forced_response(H_pd,t,u10)[1] 
 
-mag, phase, omega = control.bode(H_p, omega=np.logspace(-0.5, 2.5, 300), dB=True, label="$T_{pd}(s)$")
+u3 =  u5/2 + u10/2
+y3 = control.forced_response(H_pd,t,u3)[1] 
 
 
 
-all_axes = plt.gcf().get_axes()
-plt.sca(all_axes[0])
-plt.title("Bode plot van $T_{pd}(s) gesloten lus$")
+
+#maakt plot 2 aan
+
+plt.plot(t,u5, label=f"$\sin(5t)$",linestyle='dashed',color='blue')
+plt.plot(t,u10, label=f"$\sin(10t)$",linestyle='dashed',color='red')
+plt.plot(t,u3, label=f"$\ u1/2 + u2/2v$",linestyle='dashed',color='green')
+
+plt.plot(t,y5, label=f"response to $\sin(5t)$",color='blue')
+plt.plot(t,y10, label=f"response to $\sin(10t)$",color='red')
+plt.plot(t,y3, label=f"response to $\sin( u1/2 + u2/2)$",color='green')
+plt.xlabel('Tijd [s]')
 plt.legend()
 plt.show()
