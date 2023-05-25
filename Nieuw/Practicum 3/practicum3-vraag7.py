@@ -6,20 +6,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import control
 
-# Definieer de overdrachtsfunctie G(s)
-num = [1]
-den = [1, 2, 1]
-H = control.tf(num, den)
-
-# Definieer de waarde van Kp
+# Definieer de waarde van Kp en Kd
 Kp = 100
+Kd = 24.86
+m = 1  # kg
 
-# Definieer de lusversterking L(s) = Kp * G(s)
-L = Kp * H
+G = control.tf([1], [m, 0, 0])
+C = Kp
 
-mag, phase, omega = control.bode(H, omega=np.logspace(-2, 3, 300), dB=True)
+L = G * C
 
-# plt.legend()
+mag, phase, omega = control.bode(L, omega=np.logspace(-2, 3, 300), dB=True, label="$T(s)$")
+
+all_axes = plt.gcf().get_axes()
+plt.sca(all_axes[0])
+plt.title("Bode plot van $L(s)$")
+plt.legend()
 plt.show()
 
 # Bepaal de fase L(jω) voor een specifieke frequentie ω
