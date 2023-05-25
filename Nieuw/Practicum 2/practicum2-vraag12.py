@@ -34,7 +34,11 @@ for zeta in zetas:
     #forced response
     y = control.forced_response(H,_t,u)[1] 
     point_list.append(y)
+<<<<<<< Updated upstream
     labels.append(f"$\zeta$={zeta}")
+=======
+    labes.append(f"$\zeta$={zeta}")
+>>>>>>> Stashed changes
 
     #bode plot
     mag, phase, omega = control.bode(H, omega=t, label=f"$\zeta$={zeta}")
