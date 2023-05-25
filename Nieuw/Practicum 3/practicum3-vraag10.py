@@ -9,13 +9,13 @@ from animation_simulation import simulate_and_animate_results
 
 # Definieer de waarde van Kp en Kd
 Kp = 100
-Kd = 1
+Kd = 5
 m = 1  # kg
 
 # Definieer de overdrachtsfunctie H(s)
-num = [Kd * m, Kp * m]
-den = [Kd * m, Kp * m + 1]
-H = control.tf(num, den)
+teller = [Kd, Kp]
+noemer = [m, Kd, Kp]
+H = control.tf(teller, noemer)
 print(H)
 #print(control.poles(H))
 
