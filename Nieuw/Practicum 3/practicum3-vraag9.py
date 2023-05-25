@@ -9,13 +9,13 @@ import control
 
 # Definieer de waarde van Kp en Kd
 Kp = 100
-Kd = 100
+Kd =50
 m = 1  # kg
 
 # Definieer de overdrachtsfunctie H(s)
-num = [Kd * m, Kp * m]
-den = [Kd * m, Kp * m + 1]
-H = control.tf(num, den)
+teller = [Kd * m, Kp * m, 0, 0]
+noemer = [Kd * m, Kp * m, 0, 1]
+H = control.tf(teller, noemer)
 print(H)
 print(control.poles(H))
 
