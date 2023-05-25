@@ -12,20 +12,27 @@ Kp = 100
 Kd = 5
 m = 1  # kg
 
-# Definieer de overdrachtsfunctie H(s)
-teller = [Kd, Kp]
-noemer = [m, Kd, Kp]
-H = control.tf(teller, noemer)
+overshoot = 100
+Kd = 24.5
+while overshoot > 10:
+    Kd += 0.001
+    teller = [Kd, Kp]
+    noemer = [m, Kd, Kp]
+    H = control.tf(teller, noemer)
+    overshoot = control.step_info(H)['Overshoot']
+
 print(H)
-#print(control.poles(H))
+print(f"Kd: {Kd}, Kp: {Kp}")
+print(control.step_info(H))
+t, y = control.step_response(H)
 
-for Kd in range(1,100):
-    num = np.array([Kd * m, Kp * m])
-    den = np.array([Kd * m, Kp * m + 1])
-    H = control.tf(num, den)
-    info = control.step_info(H)
+# Plot de simulatieresultaten
+plt.plot(t, y)
+plt.xlabel('Tijd')
+plt.ylabel('Uitgang')
+plt.title('Staprespons van het gesloten lussysteem')
+plt.grid(True)
+plt.show()
 
-# Simuleer het gesloten lussysteem voor een stappingang
-#anim = simulate_and_animate_results(Kp, Kd)
-
-#plt.show()
+anim = simulate_and_animate_results(Kp, Kd, simulation_time=1)
+plt.show()

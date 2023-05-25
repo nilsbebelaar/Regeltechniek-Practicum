@@ -24,7 +24,7 @@ def simulate_and_animate_results(Kp, Kd, simulation_time=3., mass=1., setpoint=1
                 FuncAnimation: Animation object which should be assigned to variable to show the animation.
 
     """
-    time = np.linspace(0, simulation_time, 100)
+    time = np.linspace(0, simulation_time, 1000)
     position, force = solve_motion_floating_mass(time, Kp, Kd, mass, setpoint)
     return animate_simulation_results(time, position, force, setpoint, "$K_p$={}, $K_d$={}".format(Kp, Kd))
 
@@ -74,8 +74,8 @@ def animate_simulation_results(time, position, controlled_force, setpoint, plot_
     ax[1].set_ylabel('y [m]')
     ax[1].tick_params(labelbottom=False)
     ax[2].sharex(ax[1])
-    ax[2].set_ylim([min([-250] + list(controlled_force)), max([250] + list(controlled_force))])
-    ax[2].set_ylim([-250, 250])
+    ax[2].set_ylim([min([-500] + list(controlled_force)), max([500] + list(controlled_force))])
+    ax[2].set_ylim([-500, 500])
     ax[2].set_ylabel('Force [N]')
     ax[2].set_xlabel('Time [s]')
 
