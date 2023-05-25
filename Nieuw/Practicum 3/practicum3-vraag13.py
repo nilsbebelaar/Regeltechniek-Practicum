@@ -17,25 +17,23 @@ H_pd = control.tf(teller, noemer)
 
 t = np.linspace(0, 3, 1000)  # definitie tijdsvector
 u5 = np.sin(5*t)  # zelf definiëren
-y5 = control.forced_response(H_pd,t,u5)[1] 
+y5 = control.forced_response(H_pd, t, u5)[1]
 u10 = np.sin(10*t)  # zelf definiëren
-y10 = control.forced_response(H_pd,t,u10)[1] 
+y10 = control.forced_response(H_pd, t, u10)[1]
 
-u3 =  u5/2 + u10/2
-y3 = control.forced_response(H_pd,t,u3)[1] 
-
-
+u3 = u5/2 + u10/2
+y3 = control.forced_response(H_pd, t, u3)[1]
 
 
-#maakt plot 2 aan
+# maakt plot 2 aan
 
-plt.plot(t,u5, label=f"$\sin(5t)$",linestyle='dashed',color='blue')
-plt.plot(t,u10, label=f"$\sin(10t)$",linestyle='dashed',color='red')
-plt.plot(t,u3, label=f"$\ u1/2 + u2/2v$",linestyle='dashed',color='green')
+plt.plot(t, u5, label=r"$\sin(5t)$", linestyle='dashed', color='blue')
+plt.plot(t, u10, label=r"$\sin(10t)$", linestyle='dashed', color='red')
+plt.plot(t, u3, label=r"$\frac{1}{2}\sin(5t) + \frac{1}{2}\sin(10t)$", linestyle='dashed', color='green')
 
-plt.plot(t,y5, label=f"response to $\sin(5t)$",color='blue')
-plt.plot(t,y10, label=f"response to $\sin(10t)$",color='red')
-plt.plot(t,y3, label=f"response to $\sin( u1/2 + u2/2)$",color='green')
+plt.plot(t, y5, label=r"response to $\sin(5t)$", color='blue')
+plt.plot(t, y10, label=r"response to $\sin(10t)$", color='red')
+plt.plot(t, y3, label=r"response to $\frac{1}{2}\sin(5t) + \frac{1}{2}\sin(10t)$", color='green')
 plt.xlabel('Tijd [s]')
 plt.legend()
 plt.show()

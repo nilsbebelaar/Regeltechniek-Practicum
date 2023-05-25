@@ -16,16 +16,15 @@ noemer = [m, Kd, Kp]
 H_pd = control.tf(teller, noemer)
 
 teller = [Kp]
-noemer = [m,0,Kp]
-H_p = control.tf(teller,noemer)
+noemer = [m, 0, Kp]
+H_p = control.tf(teller, noemer)
 print(H_p)
 
-mag, phase, omega = control.bode(H_p, omega=np.logspace(-0.5, 2.5, 300), dB=True, label="$T_{pd}(s)$")
-
+mag, phase, omega = control.bode(H_pd, omega=np.logspace(-0.5, 2.5, 300), dB=True, label="$T_{pd}(s)$")
 
 
 all_axes = plt.gcf().get_axes()
 plt.sca(all_axes[0])
-plt.title("Bode plot van $T_{pd}(s) gesloten lus$")
+plt.title("Bode plot van $T_{pd}(s)$ gesloten lus")
 plt.legend()
 plt.show()
