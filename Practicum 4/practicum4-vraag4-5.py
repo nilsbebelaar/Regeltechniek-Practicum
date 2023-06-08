@@ -32,7 +32,7 @@ def CaclulateInfo(mag, phase, omega):
 
     return wc, pm, ts
 
-Kd = 1
+Kd = 10
 Kp = Kd*5
 
 
