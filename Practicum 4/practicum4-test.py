@@ -16,12 +16,10 @@ def CaclulateInfo(mag, phase, omega):
     for i in range(0,len(omega)):
         if(mag[i] < 1):
             if(prev == None):
-                print(mag[i],omega[i])
                 wc = omega[i]
                 prev = mag[i]
                 wcFreqIndex = i
             elif(prev < mag[i]):
-                print(mag[i],omega[i])
                 wc = omega[i]
                 prev = wc
                 wcFreqIndex = i
@@ -34,29 +32,33 @@ def CaclulateInfo(mag, phase, omega):
 
     return wc, pm, ts
 
-Kp = 50
+Kd = 1
+Kp = Kd*5
 
-Kd = 10
+
 M = 1.0
 
 G = control.tf([1],
                [M, 5.0, 0.0])
-C = Kp + Kd*G.s
-
+C = control.tf([Kd,Kp],[1])
+print(C)
 L = C*G if (C != 0) else G
 
 
 
 # Hclosed = control.feedback(H, 1)
+mag, phase, omega = control.bode(G, omega=np.logspace(-1, 2, 300), dB=True, label="$G(s)$")
+
 
 mag, phase, omega = control.bode(C, omega=np.logspace(-1, 2, 300), dB=True, label="$C(s)$")
 
-mag, phase, omega = control.bode(G, omega=np.logspace(-1, 2, 300), dB=True, label="$G(s)$")
+
 
 mag, phase, omega = control.bode(L, omega=np.logspace(-1, 2, 300), dB=True, label="$L(s)$")
 
 wc, pm, ts = CaclulateInfo(mag,phase,omega)
-print(wc, pm, ts)
+print(f' wc: {round(wc,3)} Hz, PM: {round(pm,3)} deg, ts: {round(ts,3)} s')
+print(f'Kp: {Kp}, Kd: {Kd} ')
 all_axes = plt.gcf().get_axes()
 
 
